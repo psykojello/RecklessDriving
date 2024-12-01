@@ -162,7 +162,7 @@ libraries = {
 }
 
 [node name="cellphone" parent="PlayerCar" instance=ExtResource("9_l3a06")]
-transform = Transform3D(0.588083, -0.0680435, -0.215473, 0.0724104, 0.625825, 0, 0.214045, -0.0247658, 0.592006, 0.32, 0.811, 0)
+transform = Transform3D(0.588083, -0.0680437, -0.215473, 0.0724106, 0.625825, 0, 0.214045, -0.0247659, 0.592006, 0.32, 0.811, 0)
 
 [node name="UserInterface" parent="." instance=ExtResource("9_4sh71")]
 
@@ -178,7 +178,7 @@ light_color = Color(0.998864, 0.999999, 0.786906, 1)
 shadow_enabled = true
 
 [node name="FreeLookCamera" type="Camera3D" parent="Lights"]
-transform = Transform3D(-2.49464e-10, -0.0814689, -0.996676, -4.37107e-08, 0.996676, -0.0814689, 1, 4.35451e-08, -3.8097e-09, -0.452444, -0.0869144, 0)
+transform = Transform3D(-0.920975, -0.0317421, -0.388327, -0.130584, 0.964178, 0.230887, 0.367088, 0.26335, -0.892129, -0.452444, 1.1653, -2.06518)
 script = ExtResource("7_pkwff")
 
 [connection signal="timeout" from="GameManager/Timer" to="GameManager" method="_on_timer_timeout"]
