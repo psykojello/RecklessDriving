@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://d3eukx675k1re"]
+
+[ext_resource type="Script" path="res://scripts/path_generator.gd" id="1_tiyfo"]
+[ext_resource type="Script" path="res://scripts/free_look_camera.gd" id="2_v780g"]
+
+[sub_resource type="Curve3D" id="Curve3D_fq2bd"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_wqlvk"]
+
+[node name="PathGenerator" type="Node3D" node_paths=PackedStringArray("box", "path")]
+script = ExtResource("1_tiyfo")
+box = NodePath("Path3D/PathFollow3D/box")
+path = NodePath("Path3D")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.860662, 0.509177, 0, -0.509177, 0.860662, 0, 1.9476, 4.39187)
+
+[node name="FreeLookCamera" type="Camera3D" parent="Camera3D"]
+script = ExtResource("2_v780g")
+sensitivity = 0.475
+
+[node name="Path3D" type="Path3D" parent="."]
+curve = SubResource("Curve3D_fq2bd")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
+
+[node name="box" type="MeshInstance3D" parent="Path3D/PathFollow3D"]
+mesh = SubResource("BoxMesh_wqlvk")
+skeleton = NodePath("../../..")

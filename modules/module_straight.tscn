@@ -1,0 +1,94 @@
+[gd_scene load_steps=9 format=3 uid="uid://cb1jh5d7p56fv"]
+
+[ext_resource type="Script" path="res://scripts/module.gd" id="1_g60yc"]
+[ext_resource type="Material" uid="uid://dvffm57r5v74e" path="res://materials/RoadMat.tres" id="2_fy8bd"]
+[ext_resource type="Material" uid="uid://ixht1ln1as1x" path="res://materials/RoadLines.tres" id="3_hy7ug"]
+[ext_resource type="Material" uid="uid://dn77bsfqvune6" path="res://materials/SidewalkMat.tres" id="4_40l1l"]
+[ext_resource type="Material" uid="uid://cpfip5o4jyp26" path="res://materials/GrassMat.tres" id="5_12dl6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2fauo"]
+size = Vector3(9, 1, 32)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_74s4p"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ik0ro"]
+
+[node name="module_straight" type="Node3D"]
+script = ExtResource("1_g60yc")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 16)
+shape = SubResource("BoxShape3D_2fauo")
+
+[node name="RoadCenter" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(3, 0, 0, 0, 1, 0, 0, 0, 16, 0, 0.1, 16)
+mesh = SubResource("PlaneMesh_74s4p")
+surface_material_override/0 = ExtResource("2_fy8bd")
+
+[node name="RoadLine" type="MeshInstance3D" parent="StaticBody3D/RoadCenter"]
+transform = Transform3D(0.0218402, 0, 0, 0, 1, 0, 0, 0, 0.0827637, -0.333333, 0.0252123, 0.875)
+mesh = SubResource("PlaneMesh_74s4p")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("3_hy7ug")
+
+[node name="RoadLine2" type="MeshInstance3D" parent="StaticBody3D/RoadCenter"]
+transform = Transform3D(0.0218402, 0, 0, 0, 1, 0, 0, 0, 0.0827637, -0.333333, 0.0252123, 0.375)
+mesh = SubResource("PlaneMesh_74s4p")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("3_hy7ug")
+
+[node name="RoadLine3" type="MeshInstance3D" parent="StaticBody3D/RoadCenter"]
+transform = Transform3D(0.0218402, 0, 0, 0, 1, 0, 0, 0, 0.0827637, -0.333333, 0.0252123, -0.125)
+mesh = SubResource("PlaneMesh_74s4p")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("3_hy7ug")
+
+[node name="RoadLine4" type="MeshInstance3D" parent="StaticBody3D/RoadCenter"]
+transform = Transform3D(0.0218402, 0, 0, 0, 1, 0, 0, 0, 0.0827637, -0.333333, 0.0252123, -0.625)
+mesh = SubResource("PlaneMesh_74s4p")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("3_hy7ug")
+
+[node name="RoadLine5" type="MeshInstance3D" parent="StaticBody3D/RoadCenter"]
+transform = Transform3D(0.0218402, 0, 0, 0, 1, 0, 0, 0, 0.0827637, 0.333333, 0.0252123, 0.875)
+mesh = SubResource("PlaneMesh_74s4p")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("3_hy7ug")
+
+[node name="RoadLine6" type="MeshInstance3D" parent="StaticBody3D/RoadCenter"]
+transform = Transform3D(0.0218402, 0, 0, 0, 1, 0, 0, 0, 0.0827637, 0.333333, 0.0252123, 0.375)
+mesh = SubResource("PlaneMesh_74s4p")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("3_hy7ug")
+
+[node name="RoadLine7" type="MeshInstance3D" parent="StaticBody3D/RoadCenter"]
+transform = Transform3D(0.0218402, 0, 0, 0, 1, 0, 0, 0, 0.0827637, 0.333333, 0.0252123, -0.125)
+mesh = SubResource("PlaneMesh_74s4p")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("3_hy7ug")
+
+[node name="RoadLine8" type="MeshInstance3D" parent="StaticBody3D/RoadCenter"]
+transform = Transform3D(0.0218402, 0, 0, 0, 1, 0, 0, 0, 0.0827637, 0.333333, 0.0252123, -0.625)
+mesh = SubResource("PlaneMesh_74s4p")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("3_hy7ug")
+
+[node name="SidewalkL" type="MeshInstance3D" parent="StaticBody3D/RoadCenter"]
+transform = Transform3D(0.66, 0, 0, 0, 0.2, 0, 0, 0, 2.00516, -1.33333, 0, 0)
+mesh = SubResource("BoxMesh_ik0ro")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("4_40l1l")
+
+[node name="SidewalkR" type="MeshInstance3D" parent="StaticBody3D/RoadCenter"]
+transform = Transform3D(0.66, 0, 0, 0, 0.2, 0, 0, 0, 2.00516, 1.33333, 0, 0)
+mesh = SubResource("BoxMesh_ik0ro")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("4_40l1l")
+
+[node name="Grass" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(16, 0, 0, 0, 1, 0, 0, 0, 16, 0, 0, 16)
+mesh = SubResource("PlaneMesh_74s4p")
+surface_material_override/0 = ExtResource("5_12dl6")

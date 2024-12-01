@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="GameResources" load_steps=15 format=3 uid="uid://dkiffnp3uln60"]
+
+[ext_resource type="PackedScene" uid="uid://bnsecbmcwg6pk" path="res://assets/Models/Cars/delivery.glb" id="1_43fvd"]
+[ext_resource type="PackedScene" uid="uid://cp82qfa58xb30" path="res://assets/Models/Cars/ambulance.glb" id="1_60xu1"]
+[ext_resource type="PackedScene" uid="uid://blp6mpyigwwik" path="res://scenes/traffic/other_car.tscn" id="1_lo6l0"]
+[ext_resource type="Script" path="res://scripts/global/game_resources.gd" id="2_jj4fj"]
+[ext_resource type="PackedScene" uid="uid://6exbdxqtgtna" path="res://assets/Models/Cars/hatchbackSports.glb" id="3_tah0s"]
+[ext_resource type="PackedScene" uid="uid://cbdt8ax2m26us" path="res://assets/Models/Cars/police.glb" id="4_7pmjg"]
+[ext_resource type="PackedScene" uid="uid://c5eiqsuptwcxh" path="res://assets/Models/Cars/sedan.glb" id="5_cij7d"]
+[ext_resource type="PackedScene" uid="uid://diqpgw7jdwv5j" path="res://assets/Models/Cars/suv.glb" id="6_wv7q3"]
+[ext_resource type="PackedScene" uid="uid://dxwe7crxmdy6b" path="res://assets/Models/Cars/sedanSports.glb" id="7_s8rj0"]
+[ext_resource type="PackedScene" uid="uid://maci0lp6o53x" path="res://assets/Models/Cars/suvLuxury.glb" id="8_wp8wm"]
+[ext_resource type="PackedScene" uid="uid://b0gw0i0lqp0yi" path="res://assets/Models/Cars/taxi.glb" id="9_fu1tn"]
+[ext_resource type="PackedScene" uid="uid://vpa362d3k0m5" path="res://assets/Models/Cars/van.glb" id="10_8yupk"]
+[ext_resource type="PackedScene" uid="uid://c4jjpr0oi4oeo" path="res://assets/Models/Cars/truckFlat.glb" id="11_qoydh"]
+[ext_resource type="PackedScene" uid="uid://b1jyf52ajwslu" path="res://assets/Models/Cars/truck.glb" id="12_e6k5p"]
+
+[resource]
+script = ExtResource("2_jj4fj")
+other_car = ExtResource("1_lo6l0")
+car_models = Array[PackedScene]([ExtResource("1_43fvd"), ExtResource("1_60xu1"), ExtResource("3_tah0s"), ExtResource("4_7pmjg"), ExtResource("5_cij7d"), ExtResource("6_wv7q3"), ExtResource("7_s8rj0"), ExtResource("8_wp8wm"), ExtResource("9_fu1tn"), ExtResource("10_8yupk"), ExtResource("11_qoydh"), ExtResource("12_e6k5p")])

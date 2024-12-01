@@ -1,0 +1,46 @@
+[gd_scene load_steps=9 format=3 uid="uid://sq4lote0164p"]
+
+[ext_resource type="Script" path="res://scenes/cellphone/cellphone_gui.gd" id="1_llldn"]
+[ext_resource type="PackedScene" uid="uid://blonrigds6m4n" path="res://assets/Models/cellphone.glb" id="1_vaawv"]
+[ext_resource type="PackedScene" uid="uid://c2rl1tmv1kqqt" path="res://scenes/cellphone/cellphone_gui.tscn" id="2_rc55a"]
+[ext_resource type="Script" path="res://scripts/free_look_camera.gd" id="4_7egaj"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_bmgwp"]
+viewport_path = NodePath("viewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0jixl"]
+resource_local_to_scene = true
+shading_mode = 0
+specular_mode = 2
+albedo_texture = SubResource("ViewportTexture_bmgwp")
+
+[sub_resource type="QuadMesh" id="QuadMesh_77lr5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3comq"]
+size = Vector3(0.182278, 0.0141602, 0.110279)
+
+[node name="cellphone" type="Node3D"]
+script = ExtResource("1_llldn")
+
+[node name="cellphone_model" parent="." instance=ExtResource("1_vaawv")]
+
+[node name="Display" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.8509e-09, -0.18384, 0, -4.8509e-09, 3.5126e-16, 1.00073, -0.110976, 8.0359e-09, -4.37431e-08, -0.00935726, 0.00496605, 0)
+material_override = SubResource("StandardMaterial3D_0jixl")
+mesh = SubResource("QuadMesh_77lr5")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00871412, 0, 0)
+shape = SubResource("BoxShape3D_3comq")
+
+[node name="viewport" type="SubViewport" parent="."]
+size = Vector2i(512, 768)
+
+[node name="Control" parent="viewport" instance=ExtResource("2_rc55a")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+
+[node name="FreeLookCamera" type="Camera3D" parent="Camera3D"]
+script = ExtResource("4_7egaj")

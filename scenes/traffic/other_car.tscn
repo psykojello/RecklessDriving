@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://blp6mpyigwwik"]
+
+[ext_resource type="Script" path="res://scripts/other_car.gd" id="1_8o7lq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yk3lu"]
+size = Vector3(1, 1, 2.27148)
+
+[node name="other_car" type="StaticBody3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+collision_mask = 2
+script = ExtResource("1_8o7lq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.44089e-16, 0.501996, 0.0957031)
+shape = SubResource("BoxShape3D_yk3lu")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.44089e-16, 0.501996, 0.0957031)
+shape = SubResource("BoxShape3D_yk3lu")

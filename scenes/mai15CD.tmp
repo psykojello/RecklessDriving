@@ -1,0 +1,48 @@
+[gd_scene load_steps=10 format=3 uid="uid://bece5dstiles7"]
+
+[ext_resource type="Script" path="res://scripts/Level.gd" id="1_8q4vd"]
+[ext_resource type="PackedScene" uid="uid://cac5hqkywl8vj" path="res://modules/module2.tscn" id="2_5w4ha"]
+[ext_resource type="PackedScene" uid="uid://bifeu0754tsov" path="res://modules/module3.tscn" id="3_tr641"]
+[ext_resource type="PackedScene" uid="uid://cb1jh5d7p56fv" path="res://modules/module_straight.tscn" id="4_jpd4c"]
+[ext_resource type="Script" path="res://scripts/PlayerCar.gd" id="5_7s7it"]
+[ext_resource type="PackedScene" uid="uid://c5eiqsuptwcxh" path="res://_raw/Models/Cars/sedan.glb" id="5_apuo2"]
+
+[sub_resource type="Environment" id="Environment_oyt1t"]
+background_mode = 2
+ambient_light_color = Color(0.426312, 0.326278, 0.471842, 1)
+volumetric_fog_enabled = true
+volumetric_fog_density = 50.0
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_75vcx"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2cc1u"]
+size = Vector3(1.16937, 1.1001, 2.50342)
+
+[node name="main" type="Node3D"]
+
+[node name="Level" type="Node3D" parent="."]
+script = ExtResource("1_8q4vd")
+modules = Array[PackedScene]([ExtResource("2_5w4ha"), ExtResource("3_tr641"), ExtResource("4_jpd4c")])
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_oyt1t")
+camera_attributes = SubResource("CameraAttributesPractical_75vcx")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.187412, -0.858451, -0.477429, -0.700078, -0.224208, 0.677954, -0.689034, 0.461294, -0.558963, 10, 10, 0)
+shadow_enabled = true
+
+[node name="PlayerCar" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
+script = ExtResource("5_7s7it")
+
+[node name="sedan2" parent="PlayerCar" instance=ExtResource("5_apuo2")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerCar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00668335, 0.729758, -0.0368652)
+shape = SubResource("BoxShape3D_2cc1u")
+
+[node name="Camera3D" type="Camera3D" parent="PlayerCar"]
+transform = Transform3D(-1, 3.5558e-08, -7.98647e-08, 0, 0.913545, 0.406737, 8.74228e-08, 0.406737, -0.913545, 0, 1.935, -4.65)
+fov = 60.0

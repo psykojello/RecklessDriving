@@ -1,0 +1,67 @@
+[gd_scene load_steps=12 format=3 uid="uid://bece5dstiles7"]
+
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_8q4vd"]
+[ext_resource type="Script" path="res://scripts/global/game.gd" id="1_gpnal"]
+[ext_resource type="PackedScene" uid="uid://cac5hqkywl8vj" path="res://modules/module2.tscn" id="2_5w4ha"]
+[ext_resource type="PackedScene" uid="uid://bifeu0754tsov" path="res://modules/module3.tscn" id="3_tr641"]
+[ext_resource type="PackedScene" uid="uid://cb1jh5d7p56fv" path="res://modules/module_straight.tscn" id="4_jpd4c"]
+[ext_resource type="Script" path="res://scripts/car_lane.gd" id="5_5bgkc"]
+[ext_resource type="PackedScene" uid="uid://blp6mpyigwwik" path="res://prefabs/traffic/other_car.tscn" id="6_3r0o4"]
+[ext_resource type="Script" path="res://scripts/free_look_camera.gd" id="7_pkwff"]
+[ext_resource type="PackedScene" uid="uid://ccgfgge83aa30" path="res://prefabs/traffic/player_car.tscn" id="7_s55rc"]
+
+[sub_resource type="Environment" id="Environment_oyt1t"]
+background_mode = 2
+ambient_light_color = Color(0.426312, 0.326278, 0.471842, 1)
+volumetric_fog_enabled = true
+volumetric_fog_density = 50.0
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_75vcx"]
+
+[node name="main" type="Node3D"]
+script = ExtResource("1_gpnal")
+cars = Array[PackedScene]([ExtResource("6_3r0o4")])
+
+[node name="Level" type="Node3D" parent="."]
+script = ExtResource("1_8q4vd")
+modules = Array[PackedScene]([ExtResource("2_5w4ha"), ExtResource("3_tr641"), ExtResource("4_jpd4c")])
+
+[node name="CarLane" type="Node3D" parent="Level"]
+script = ExtResource("5_5bgkc")
+offset = -2.0
+lane_speed = 17
+min_distance = 8.0
+
+[node name="CarLane2" type="Node3D" parent="Level"]
+script = ExtResource("5_5bgkc")
+min_distance = 8.0
+
+[node name="CarLane3" type="Node3D" parent="Level"]
+script = ExtResource("5_5bgkc")
+offset = 2.0
+lane_speed = 6
+min_distance = 8.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_oyt1t")
+camera_attributes = SubResource("CameraAttributesPractical_75vcx")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.811428, -0.524302, -0.258244, 0.33146, -0.77675, 0.53553, -0.481371, 0.348948, 0.804065, 10, 10, 0)
+light_color = Color(0.998864, 0.999999, 0.786906, 1)
+shadow_enabled = true
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.6547, -0.178851, -0.734425, -0.269416, -0.852581, 0.447795, -0.706246, 0.491038, 0.51, 10, 10, 0)
+light_color = Color(0.28491, 0.678137, 0.83028, 1)
+
+[node name="PlayerCar" parent="." instance=ExtResource("7_s55rc")]
+
+[node name="MainCamera" type="Camera3D" parent="PlayerCar"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1.27, 0)
+fov = 60.0
+
+[node name="DebugCamera" type="Camera3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0.996195, -0.0871558, 0, 0.0871558, 0.996195, 1, 4.35451e-08, -3.8097e-09, -20, 40, 0)
+fov = 60.0
+script = ExtResource("7_pkwff")

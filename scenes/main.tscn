@@ -1,0 +1,184 @@
+[gd_scene load_steps=18 format=3 uid="uid://bece5dstiles7"]
+
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_8q4vd"]
+[ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_t5d2l"]
+[ext_resource type="PackedScene" uid="uid://cac5hqkywl8vj" path="res://modules/module2.tscn" id="2_5w4ha"]
+[ext_resource type="PackedScene" uid="uid://bifeu0754tsov" path="res://modules/module3.tscn" id="3_tr641"]
+[ext_resource type="PackedScene" uid="uid://cb1jh5d7p56fv" path="res://modules/module_straight.tscn" id="4_jpd4c"]
+[ext_resource type="Script" path="res://scripts/car_lane.gd" id="5_5bgkc"]
+[ext_resource type="Script" path="res://scripts/free_look_camera.gd" id="7_pkwff"]
+[ext_resource type="PackedScene" uid="uid://ccgfgge83aa30" path="res://scenes/traffic/player_car.tscn" id="7_s55rc"]
+[ext_resource type="PackedScene" uid="uid://dgg3chblhttjd" path="res://scenes/ui/game_ui.tscn" id="9_4sh71"]
+[ext_resource type="PackedScene" uid="uid://sq4lote0164p" path="res://scenes/cellphone/cellphone.tscn" id="9_l3a06"]
+
+[sub_resource type="Animation" id="Animation_1t355"]
+resource_name = "LookDown"
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainCamera:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -1.5708, 0), Vector3(-0.221657, -1.95302, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("cellphone:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.32, 0.811, 0), Vector3(0.2, 0.961, -0.17)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("cellphone:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -0.349066, -0.69115), Vector3(0, -0.361283, -0.115192)]
+}
+
+[sub_resource type="Animation" id="Animation_ikt15"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainCamera:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -1.5708, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("cellphone:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.32, 0.811, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("cellphone:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -0.349066, 0.115192)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2umj5"]
+_data = {
+"LookDown": SubResource("Animation_1t355"),
+"RESET": SubResource("Animation_ikt15")
+}
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_g35oj"]
+rayleigh_coefficient = 0.9
+rayleigh_color = Color(0.287995, 0.554041, 0.95466, 1)
+turbidity = 0.0
+ground_color = Color(0.88662, 0.572507, 0.379045, 1)
+
+[sub_resource type="Sky" id="Sky_bac6h"]
+sky_material = SubResource("PhysicalSkyMaterial_g35oj")
+
+[sub_resource type="Environment" id="Environment_oyt1t"]
+background_mode = 2
+background_energy_multiplier = 3.54
+sky = SubResource("Sky_bac6h")
+ambient_light_source = 3
+ambient_light_color = Color(0.12796, 0.222693, 0.348391, 1)
+ambient_light_energy = 4.41
+volumetric_fog_enabled = true
+volumetric_fog_density = 1.0
+volumetric_fog_emission_energy = 0.0
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_75vcx"]
+
+[node name="Game" type="Node3D"]
+
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("ui", "player")]
+unique_name_in_owner = true
+script = ExtResource("1_t5d2l")
+ui = NodePath("../UserInterface")
+player = NodePath("../PlayerCar")
+
+[node name="Timer" type="Timer" parent="GameManager"]
+wait_time = 5.0
+one_shot = true
+
+[node name="Level" type="Node3D" parent="."]
+script = ExtResource("1_8q4vd")
+modules = Array[PackedScene]([ExtResource("2_5w4ha"), ExtResource("3_tr641"), ExtResource("4_jpd4c")])
+
+[node name="CarLane" type="Node3D" parent="Level"]
+script = ExtResource("5_5bgkc")
+offset = -2.0
+lane_speed = 12
+
+[node name="CarLane2" type="Node3D" parent="Level"]
+script = ExtResource("5_5bgkc")
+lane_speed = 9
+
+[node name="CarLane3" type="Node3D" parent="Level"]
+script = ExtResource("5_5bgkc")
+offset = 2.0
+lane_speed = 6
+
+[node name="PlayerCar" parent="." node_paths=PackedStringArray("cam_anim_player") instance=ExtResource("7_s55rc")]
+cam_anim_player = NodePath("CameraAnimationPlayer")
+max_speed = 60.0
+
+[node name="MainCamera" type="Camera3D" parent="PlayerCar"]
+transform = Transform3D(-3.61999e-06, 0, -1, 0, 1, 0, 1, 0, -3.61999e-06, 0.05, 1.01, -0.23)
+fov = 60.0
+
+[node name="CameraAnimationPlayer" type="AnimationPlayer" parent="PlayerCar"]
+libraries = {
+"": SubResource("AnimationLibrary_2umj5")
+}
+
+[node name="cellphone" parent="PlayerCar" instance=ExtResource("9_l3a06")]
+transform = Transform3D(0.588083, -0.0680435, -0.215473, 0.0724104, 0.625825, 0, 0.214045, -0.0247658, 0.592006, 0.32, 0.811, 0)
+
+[node name="UserInterface" parent="." instance=ExtResource("9_4sh71")]
+
+[node name="Lights" type="Node" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Lights"]
+environment = SubResource("Environment_oyt1t")
+camera_attributes = SubResource("CameraAttributesPractical_75vcx")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lights"]
+transform = Transform3D(-0.811428, -0.524304, -0.258243, 0.33146, -0.77675, 0.535531, -0.481371, 0.348948, 0.804063, 10, 10, 0)
+light_color = Color(0.998864, 0.999999, 0.786906, 1)
+shadow_enabled = true
+
+[node name="FreeLookCamera" type="Camera3D" parent="Lights"]
+transform = Transform3D(-2.49464e-10, -0.0814689, -0.996676, -4.37107e-08, 0.996676, -0.0814689, 1, 4.35451e-08, -3.8097e-09, -0.452444, -0.0869144, 0)
+script = ExtResource("7_pkwff")
+
+[connection signal="timeout" from="GameManager/Timer" to="GameManager" method="_on_timer_timeout"]

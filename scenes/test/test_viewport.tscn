@@ -1,0 +1,64 @@
+[gd_scene load_steps=5 format=3 uid="uid://btju6tftjw24u"]
+
+[ext_resource type="Script" path="res://scenes/test/test_viewport.gd" id="1_algqs"]
+[ext_resource type="Script" path="res://scripts/free_look_camera.gd" id="2_nde1t"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_abt1r"]
+size = Vector3(5.1084, 5.12488, 1.57428)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_srlkv"]
+viewport_path = NodePath("Area3D/Sprite3D/SubViewport")
+
+[node name="TestViewport" type="Node3D"]
+
+[node name="Area3D" type="Area3D" parent="."]
+script = ExtResource("1_algqs")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0107373, -0.787079)
+shape = SubResource("BoxShape3D_abt1r")
+
+[node name="Sprite3D" type="Sprite3D" parent="Area3D"]
+texture = SubResource("ViewportTexture_srlkv")
+
+[node name="SubViewport" type="SubViewport" parent="Area3D/Sprite3D"]
+
+[node name="Control" type="Control" parent="Area3D/Sprite3D/SubViewport"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Area3D/Sprite3D/SubViewport/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="Area3D/Sprite3D/SubViewport/Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "But1"
+
+[node name="Button2" type="Button" parent="Area3D/Sprite3D/SubViewport/Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "But2"
+
+[node name="Button3" type="Button" parent="Area3D/Sprite3D/SubViewport/Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "But3"
+
+[node name="FreeLookCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.42974)
+script = ExtResource("2_nde1t")
+
+[connection signal="input_event" from="Area3D" to="Area3D" method="_on_input_event"]
+[connection signal="pressed" from="Area3D/Sprite3D/SubViewport/Control/VBoxContainer/Button" to="Area3D" method="_on_button1_pressed"]
+[connection signal="pressed" from="Area3D/Sprite3D/SubViewport/Control/VBoxContainer/Button2" to="Area3D" method="_on_button_2_pressed"]
+[connection signal="pressed" from="Area3D/Sprite3D/SubViewport/Control/VBoxContainer/Button3" to="Area3D" method="_on_button_3_pressed"]

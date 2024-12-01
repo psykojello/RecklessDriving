@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://bottoyhb0op27"]
+
+[ext_resource type="PackedScene" uid="uid://sq4lote0164p" path="res://scenes/cellphone/cellphone.tscn" id="1_o1i85"]
+[ext_resource type="PackedScene" uid="uid://ccgfgge83aa30" path="res://scenes/traffic/player_car.tscn" id="1_u1gbs"]
+[ext_resource type="Script" path="res://scripts/free_look_camera.gd" id="2_3k4yx"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="PlayerCar" parent="." instance=ExtResource("1_u1gbs")]
+
+[node name="cellphone" parent="PlayerCar" instance=ExtResource("1_o1i85")]
+
+[node name="FreeLookCamera" type="Camera3D" parent="."]
+transform = Transform3D(0.105379, 0, -0.994432, 0, 1, 0, 0.994432, 0, 0.105379, -0.968757, 0, 0)
+script = ExtResource("2_3k4yx")

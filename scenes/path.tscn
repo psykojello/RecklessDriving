@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwwcdedgr3ggr"]
+
+[sub_resource type="Curve3D" id="Curve3D_wqf5d"]
+bake_interval = 304.58
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -90.2358, 0, 125.851, 0, 0, 0, 0, 0, 0, -23.4223, 0, 36.6083, 0, 0, 0, 0, 0, 0, 129, 0, 33.1311, 0, 0, 0, 0, 0, 0, 237.539, 0, -66.6804, 0, 0, 0, 0, 0, 0, 161.422, -6.10352e-05, -313.974, 0, 0, 0, 0, 0, 0, -100.595, 0, -394.194, 0, 0, 0, 0, 0, 0, -194.111, 0, 51.0073, 0, 0, 0, 0, 0, 0, -89.4238, 0, 124.441),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 8
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Path3D" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.68117, 0, 0)
+curve = SubResource("Curve3D_wqf5d")
